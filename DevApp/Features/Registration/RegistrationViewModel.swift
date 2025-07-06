@@ -10,9 +10,13 @@ protocol RegistrationViewModelProtocol {
 }
 
 final class RegistrationViewModel: RegistrationViewModelProtocol {
-    private let userdefaults = UserDefaults.standard
+    private let userdefaults: UserDefaultsManagerProtocol
     private let minPasswordLength = 6
     private let minNameLength = 2
+    
+    init(userdefaults: UserDefaultsManagerProtocol = UserDefaultsManager()) {
+        self.userdefaults = userdefaults
+    }
 
     func validateRegistration(firstName: String?,
                               lastName: String?,
@@ -67,8 +71,6 @@ final class RegistrationViewModel: RegistrationViewModelProtocol {
     }
     
     func registerUser(data: User) {
-        userdefaults.set(data.firstName, forKey: "firstName")
-        userdefaults.set(data.lastName, forKey: "lastName")
-        userdefaults.set(data.birthDate, forKey: "birthDate")
+        userdefaults.save(data, forKey: "currentUser")
     }
 }

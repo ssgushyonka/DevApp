@@ -1,7 +1,7 @@
 import UIKit
 
 final class RegistrationViewController: UIViewController {
-    private let viewModel = RegistrationViewModel()
+    private let viewModel: RegistrationViewModelProtocol = RegistrationViewModel()
 
     private lazy var firstNameTextField: CustomTextField = {
         let textField = CustomTextField(icon: UIImage(systemName: "person"), placeholder: RegistrationStrings.firstNamePlaceholder)
