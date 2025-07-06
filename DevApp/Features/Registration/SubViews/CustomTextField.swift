@@ -22,7 +22,7 @@ final class CustomTextField: UITextField {
 
     private func setupView(icon: UIImage?, placeholder: String) {
         backgroundColor = .white
-        layer.cornerRadius = 25
+        layer.cornerRadius = RegistrationLayout.viewsCornerRadius
         layer.masksToBounds = true
         layer.borderWidth = 2
         layer.borderColor = UIColor.placeholderText.withAlphaComponent(0.1).cgColor
@@ -44,13 +44,13 @@ final class CustomTextField: UITextField {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            iconImageView.widthAnchor.constraint(equalToConstant: 27),
-            iconImageView.heightAnchor.constraint(equalToConstant: 27)
+            iconImageView.widthAnchor.constraint(equalToConstant: RegistrationLayout.textfieldIconSize),
+            iconImageView.heightAnchor.constraint(equalToConstant: RegistrationLayout.textfieldIconSize)
         ])
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric, height: 50)
+        return CGSize(width: UIView.noIntrinsicMetric, height: RegistrationLayout.textfieldHeight)
     }
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
