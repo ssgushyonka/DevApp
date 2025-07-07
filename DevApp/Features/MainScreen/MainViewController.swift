@@ -103,7 +103,19 @@ extension MainViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let book = books[indexPath.row]
-        cell.configure(title: book.title, author: book.author, genre: book.genre)
+        cell.configure(title: book.title, author: book.author, genre: book.genre, description: book.description)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let book = books[indexPath.row]
+
+        let alert = UIAlertController(title: book.title,
+                                      message: book.description,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alert, animated: true)
+    }
+
 }

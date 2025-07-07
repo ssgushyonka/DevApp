@@ -2,6 +2,7 @@ import UIKit
 
 final class BookCell: UITableViewCell {
     static let reuseId = "BookCell"
+    private var bookDescription: String?
     
     private lazy var bookNameLabel: UILabel = {
         let label = UILabel()
@@ -79,10 +80,11 @@ final class BookCell: UITableViewCell {
         ])
     }
 
-    func configure(title: String, author: String, genre: String) {
+    func configure(title: String, author: String, genre: String, description: String) {
         bookNameLabel.attributedText = createAttributedText(boldPart: "Название:", normalPart: title)
         authorNameLabel.attributedText = createAttributedText(boldPart: "Автор:", normalPart: author)
         genreLabel.attributedText = createAttributedText(boldPart: "Жанр:", normalPart: genre)
+        bookDescription = description
     }
 
     private func createAttributedText(boldPart: String, normalPart: String) -> NSAttributedString {

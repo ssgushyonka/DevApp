@@ -8,5 +8,6 @@ struct Book: Decodable {
     let title: String
     let author: String
     let genre: String
+    let description: String
     let image: String // не использую (в данных фейк картинка), но оставила на случай, если бы картинка была реальная
 }
