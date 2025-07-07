@@ -5,7 +5,7 @@ final class HelloViewController: UIViewController {
     
     private let helloLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 25, weight: .semibold)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -13,7 +13,7 @@ final class HelloViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .tertiarySystemBackground
         setupViews()
         setupConstraints()
         setupUserName()
@@ -35,6 +35,6 @@ final class HelloViewController: UIViewController {
             helloLabel.text = "Привет, пользователь!"
             return
         }
-        helloLabel.text = "Привет, \(user.firstName)"
+        helloLabel.text = "Привет, \(user.firstName) \(user.lastName)!"
     }
 }
