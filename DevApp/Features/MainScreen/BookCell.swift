@@ -80,34 +80,16 @@ final class BookCell: UITableViewCell {
     }
 
     func configure(title: String, author: String, genre: String) {
-        let titleText = "Название: \(title)"
-        let attributedTitle = NSMutableAttributedString(string: titleText)
-        let titleBoldRange = (titleText as NSString).range(of: "Название:")
-        attributedTitle.addAttribute(
-            .font,
-            value: UIFont.boldSystemFont(ofSize: 20),
-            range: titleBoldRange
-        )
-        bookNameLabel.attributedText = attributedTitle
+        bookNameLabel.attributedText = createAttributedText(boldPart: "Название:", normalPart: title)
+        authorNameLabel.attributedText = createAttributedText(boldPart: "Автор:", normalPart: author)
+        genreLabel.attributedText = createAttributedText(boldPart: "Жанр:", normalPart: genre)
+    }
 
-        let authorText = "Автор: \(author)"
-        let attributedAuthor = NSMutableAttributedString(string: authorText)
-        let authorBoldRange = (authorText as NSString).range(of: "Автор:")
-        attributedAuthor.addAttribute(
-            .font,
-            value: UIFont.boldSystemFont(ofSize: 20),
-            range: authorBoldRange
-        )
-        authorNameLabel.attributedText = attributedAuthor
-        
-        let genreText = "Жанр: \(genre)"
-        let attributedGenre = NSMutableAttributedString(string: genreText)
-        let genreBoldRange = (genreText as NSString).range(of: "Жанр:")
-        attributedGenre.addAttribute(
-            .font,
-            value: UIFont.boldSystemFont(ofSize: 20),
-            range: genreBoldRange
-        )
-        genreLabel.attributedText = attributedGenre
+    private func createAttributedText(boldPart: String, normalPart: String) -> NSAttributedString {
+        let fullText = "\(boldPart) \(normalPart)"
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let boldRange = (fullText as NSString).range(of: boldPart)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 20), range: boldRange)
+        return attributedString
     }
 }
