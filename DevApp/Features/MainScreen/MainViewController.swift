@@ -117,5 +117,4 @@ extension MainViewController: UITableViewDataSource {
         alert.addAction(UIAlertAction(title: "ОК", style: .default))
         present(alert, animated: true)
     }
-
 }
