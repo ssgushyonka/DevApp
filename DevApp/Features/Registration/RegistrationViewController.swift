@@ -59,7 +59,9 @@ final class RegistrationViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         button.tintColor = .white
         button.backgroundColor = .systemTeal
+        button.alpha = 0.5
         button.layer.cornerRadius = RegistrationLayout.viewsCornerRadius
+        button.isEnabled = false
         button.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -86,6 +88,8 @@ final class RegistrationViewController: UIViewController {
         setupHideKeyboardOnTap()
         setupViews()
         setupConstraints()
+        setupTextFieldsObservers()
+        updateRegistrationButtonState()
     }
 
     private func setupViews() {
@@ -120,6 +124,30 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
+    private func setupTextFieldsObservers() {
+        [firstNameTextField, lastNameTextField, birthDateTextField, passwordTextField, confirmPasswordTextField].forEach {
+            $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
+    }
+
+    private func updateRegistrationButtonState() {
+        let isFormFilled = [
+            firstNameTextField.text,
+            lastNameTextField.text,
+            birthDateTextField.text,
+            passwordTextField.text,
+            confirmPasswordTextField.text
+        ].allSatisfy { ($0?.isEmpty == false) }
+        
+        registrationButton.isEnabled = isFormFilled
+        registrationButton.alpha = isFormFilled ? 1.0 : 0.5
+    }
+
+    @objc
+    private func textFieldDidChange(_ textField: UITextField) {
+        updateRegistrationButtonState()
+    }
+
     @objc
     private func datePickerValueChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()

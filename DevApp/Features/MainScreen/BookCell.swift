@@ -29,7 +29,7 @@ final class BookCell: UITableViewCell {
     
     private lazy var bookImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .systemGray5
         imageView.clipsToBounds = true
         imageView.contentMode = .center
         imageView.image = UIImage(systemName: "photo")

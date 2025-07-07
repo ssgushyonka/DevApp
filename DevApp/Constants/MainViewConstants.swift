@@ -11,8 +11,8 @@ enum MainViewLayout {
 }
 
 enum BookCellLayout {
-    static let bookImageWidth: CGFloat = 50
-    static let bookImageHeight: CGFloat = 60
+    static let bookImageWidth: CGFloat = 55
+    static let bookImageHeight: CGFloat = 70
     static let bookNameTop: CGFloat = 12
     static let booksLeading: CGFloat = 16
     
